@@ -35,10 +35,10 @@ int main(int argc, char** argv) {
     }
     
     //Calculate the number of powers of 10
-    n1000s=algebra/1000;
-    n100s=algebra%1000/100;
-    n10s=algebra%100/10;
-    n1s=algebra%10;
+    n1000s=algebra/1000;    //Strip 1000's
+    n100s=algebra%1000/100; //Stripped the 100's place
+    n10s=algebra%100/10;    //Stripped the 10's place
+    n1s=algebra%10;         //Stripped the 1's place
     cout<<algebra<<" = "<<static_cast<int>(n1000s)
                         <<static_cast<int>(n100s)
                         <<static_cast<int>(n10s)
