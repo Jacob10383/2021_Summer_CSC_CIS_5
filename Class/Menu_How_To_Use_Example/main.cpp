@@ -1,8 +1,8 @@
 /* 
  * File:   main.cpp
  * Author: Dr. Mark E. Lehr
- * Created on July 8th, 2021, 10:41 AM
- * Purpose:  Basic Menu for Homework and Exams
+ * Created on July 12th, 2021, 10:58 AM
+ * Purpose:  Basic Menu with functions and examples
  */
 
 //System Libraries
@@ -19,6 +19,9 @@ using namespace std;  //STD Name-space where Library is compiled
 //Math/Physics/Science/Conversions/Dimensions
 
 //Function Prototypes
+void prob0();
+void prob1();
+void prob2();
 
 //Code Begins Execution Here with function main
 int main(int argc, char** argv) {
@@ -43,108 +46,9 @@ int main(int argc, char** argv) {
         
         //Display the Solution to the problems
         switch(choose){
-            case 0:{  
-                //Declare outer loop variables
-                int nStay,  //Number of times we win the prize if we stay
-                nChange,//Number of times we win the prize if we change doors
-                nPlyGm; //Number of times we play the game
-
-                //Initialize the outer loop variables
-                nPlyGm=1000000;
-                nStay=nChange=0;
-
-                for(int play=1;play<=nPlyGm;play++){
-                    //Declare Variables
-                    char prize, pick, open;
-
-                    //Initialize or input i.e. set variable values
-                    prize=rand()%3+1;//[1-3]  The door where prize is located
-                    pick=rand()%3+1; //[1-3]  The door I choose 
-                    do{
-                        open=rand()%3+1;//[1-3]  The door which was open to show no prize
-                    }while(open==prize||open==pick);
-
-                    //Win/lose
-                    if(prize==pick)nStay++;
-                    else nChange++;
-                }
-
-                //Display the outputs
-                cout<<fixed<<setprecision(2)<<showpoint;
-                cout<<"Total Games Played = "<<setw(10)<<nPlyGm<<endl;
-                cout<<"Wins when staying  = "<<setw(10)<<nStay<<endl;
-                cout<<"Wins when changing = "<<setw(10)<<nChange<<endl;
-                cout<<"Probability when staying  to win = "
-                        <<100.0f*nStay/nPlyGm<<"%"<<endl;
-                cout<<"Probability when changing to win = "
-                        <<100.0f*nChange/nPlyGm<<"%"<<endl;
-                    break;}
-            case 1:{    
-                //Declare variables here
-                int nRows,//Number of Rows
-                    nCols;//Number of Colunns
-                float aspR8io;//Aspect Ratio
-
-                //Initialize variables here
-                aspR8io=2;
-                cout<<"This program displays a Square"<<endl;
-                cout<<"Input the dimensions from 1 to 15"<<endl;
-                do{
-                    cin>>nRows;
-                    nCols=aspR8io*nRows;
-                }while(!(nRows>=1 && nRows<=15));
-
-                //Display the results
-                cout<<endl;
-                for(int row=1;row<=nRows;row++){
-                    for(int col=1;col<=nCols;col++){
-                        cout<<"X";
-                    }
-                    cout<<endl;
-                }
-                cout<<endl;
-                break;}
-            case 2:{
-                //Declare variables here
-                unsigned int range,//Range of values to guess [1-2Bil]
-                            nGuess,//Total guesses allowed to win
-                             value,//Value to guess
-                           counter,//Count the number of guesses
-                          usrGuess;//The users guess
-
-                //Initialize variables here
-                cout<<"Find a random number by guessing"<<endl;
-                cout<<"You will be given a certain number of Guesses "<<endl;
-                cout<<"Based upon the range of values to select from "<<endl;
-                cout<<"For instance, a range of 1000 you will only have 10 guesses"<<endl;
-                cout<<"Choose your range from 1 to 2 Billion"<<endl<<endl;
-                cin>>range;
-                nGuess=log(range)/log(2)+1;//Number of Guesses
-                value=rand()%range+1;      //Range of the value to guess
-                counter=0;
-
-                //Map inputs to outputs here, i.e. the process
-                do{
-                    cout<<"Input a guess"<<endl;
-                    cin>>usrGuess;
-                    counter++;
-                    if(usrGuess>value){
-                        cout<<"The guess was high"<<endl<<endl;
-                    }else if(usrGuess<value){
-                        cout<<"The guess was low"<<endl<<endl;
-                    }else{
-                        cout<<endl<<"Congratulations, you solved the puzzle"<<endl<<endl;
-                    }
-                }while(counter<=nGuess && value!=usrGuess);
-
-                //Display the results
-                cout<<endl<<"Solution Statistics"<<endl;
-                cout<<"The range of possible values = [1-"<<range<<"]"<<endl;
-                cout<<"The allowed number of guesses = "<<nGuess<<endl;
-                cout<<"The value to find = "<<value<<endl;
-                cout<<"The number of guesses = "<<counter<<endl;
-                cout<<"The final user guess = "<<usrGuess<<endl;
-                break;}
+            case 0:prob0();break;
+            case 1:prob1();break;
+            case 2:prob2();break;
             case 3:cout<<"Place Problem 3 here"<<endl;break;
             case 4:cout<<"Place Problem 4 here"<<endl;break;
             case 5:cout<<"Place Problem 5 here"<<endl;break;
@@ -157,4 +61,110 @@ int main(int argc, char** argv) {
     }while(choose>=0 && choose<=9);
 
     return 0;
+}
+
+void prob0(){
+    //Declare outer loop variables
+    int nStay,  //Number of times we win the prize if we stay
+    nChange,//Number of times we win the prize if we change doors
+    nPlyGm; //Number of times we play the game
+
+    //Initialize the outer loop variables
+    nPlyGm=1000000;
+    nStay=nChange=0;
+
+    for(int play=1;play<=nPlyGm;play++){
+        //Declare Variables
+        char prize, pick, open;
+
+        //Initialize or input i.e. set variable values
+        prize=rand()%3+1;//[1-3]  The door where prize is located
+        pick=rand()%3+1; //[1-3]  The door I choose 
+        do{
+            open=rand()%3+1;//[1-3]  The door which was open to show no prize
+        }while(open==prize||open==pick);
+
+        //Win/lose
+        if(prize==pick)nStay++;
+        else nChange++;
+    }
+
+    //Display the outputs
+    cout<<fixed<<setprecision(2)<<showpoint;
+    cout<<"Total Games Played = "<<setw(10)<<nPlyGm<<endl;
+    cout<<"Wins when staying  = "<<setw(10)<<nStay<<endl;
+    cout<<"Wins when changing = "<<setw(10)<<nChange<<endl;
+    cout<<"Probability when staying  to win = "
+            <<100.0f*nStay/nPlyGm<<"%"<<endl;
+    cout<<"Probability when changing to win = "
+            <<100.0f*nChange/nPlyGm<<"%"<<endl;
+}
+
+void prob1(){
+    //Declare variables here
+    int nRows,//Number of Rows
+        nCols;//Number of Colunns
+    float aspR8io;//Aspect Ratio
+
+    //Initialize variables here
+    aspR8io=2;
+    cout<<"This program displays a Square"<<endl;
+    cout<<"Input the dimensions from 1 to 15"<<endl;
+    do{
+        cin>>nRows;
+        nCols=aspR8io*nRows;
+    }while(!(nRows>=1 && nRows<=15));
+
+    //Display the results
+    cout<<endl;
+    for(int row=1;row<=nRows;row++){
+        for(int col=1;col<=nCols;col++){
+            cout<<"X";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+    
+}
+
+void prob2(){
+    //Declare variables here
+    unsigned int range,//Range of values to guess [1-2Bil]
+                nGuess,//Total guesses allowed to win
+                 value,//Value to guess
+               counter,//Count the number of guesses
+              usrGuess;//The users guess
+
+    //Initialize variables here
+    cout<<"Find a random number by guessing"<<endl;
+    cout<<"You will be given a certain number of Guesses "<<endl;
+    cout<<"Based upon the range of values to select from "<<endl;
+    cout<<"For instance, a range of 1000 you will only have 10 guesses"<<endl;
+    cout<<"Choose your range from 1 to 2 Billion"<<endl<<endl;
+    cin>>range;
+    nGuess=log(range)/log(2)+1;//Number of Guesses
+    value=rand()%range+1;      //Range of the value to guess
+    counter=0;
+
+    //Map inputs to outputs here, i.e. the process
+    do{
+        cout<<"Input a guess"<<endl;
+        cin>>usrGuess;
+        counter++;
+        if(usrGuess>value){
+            cout<<"The guess was high"<<endl<<endl;
+        }else if(usrGuess<value){
+            cout<<"The guess was low"<<endl<<endl;
+        }else{
+            cout<<endl<<"Congratulations, you solved the puzzle"<<endl<<endl;
+        }
+    }while(counter<=nGuess && value!=usrGuess);
+
+    //Display the results
+    cout<<endl<<"Solution Statistics"<<endl;
+    cout<<"The range of possible values = [1-"<<range<<"]"<<endl;
+    cout<<"The allowed number of guesses = "<<nGuess<<endl;
+    cout<<"The value to find = "<<value<<endl;
+    cout<<"The number of guesses = "<<counter<<endl;
+    cout<<"The final user guess = "<<usrGuess<<endl;
 }
